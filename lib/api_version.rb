@@ -1,4 +1,5 @@
 # Used for "Content Negotiation"
+# https://scotch.io/tutorials/build-a-restful-json-api-with-rails-5-part-three
 class ApiVersion
   attr_reader :version, :default
 
