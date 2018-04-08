@@ -28,6 +28,6 @@ class AuthorizeApiRequest
       return headers['Authorization'].split(' ').last
     end
 
-      raise(ExceptionHandler::MissingToken, Message.missing_token)
+    raise(ExceptionHandler::MissingToken, Message.missing_token)
   end
 end
