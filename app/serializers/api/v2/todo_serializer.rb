@@ -1,4 +1,4 @@
-class V2::TodoSerializer < ActiveModel::Serializer
+class Api::V2::TodoSerializer < ActiveModel::Serializer
   attributes :implemented
 
   def implemented

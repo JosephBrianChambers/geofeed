@@ -6,7 +6,6 @@ class ApiBaseController < ActionController::API
 
   attr_reader :current_user
 
-
   private
 
   def authorize_request

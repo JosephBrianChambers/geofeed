@@ -1,4 +1,4 @@
-module V1
+module Api::V1
   class ItemsController < ApiBaseController
     before_action :set_todo
     before_action :set_todo_item, only: [:show, :update, :destroy]

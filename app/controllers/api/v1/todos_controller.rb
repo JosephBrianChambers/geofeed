@@ -1,4 +1,4 @@
-module V1
+module Api::V1
   class TodosController < ApiBaseController
     before_action :set_todo, only: [:show, :update, :destroy]
 
