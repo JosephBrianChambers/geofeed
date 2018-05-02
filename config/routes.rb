@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :bubbles
   get "/", to: "root#index"
 
   namespace :api do
