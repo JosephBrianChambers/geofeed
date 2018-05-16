@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe AuthorizeApiRequest do
   let(:user) { create(:user) }
-  let(:header) { { 'Authorization' => token_generator(user.id) } }
-  subject(:invalid_request_obj) { described_class.new({}) }
-  subject(:request_obj) { described_class.new(header) }
+  let(:jwt) { token_generator(user.id) }
+  subject(:invalid_request_obj) { described_class.new(nil) }
+  subject(:request_obj) { described_class.new(jwt) }
 
   describe '#call' do
     context 'when valid request' do
@@ -24,7 +24,7 @@ RSpec.describe AuthorizeApiRequest do
 
       context 'when invalid token' do
         subject(:invalid_request_obj) do
-          described_class.new('Authorization' => token_generator(5))
+          described_class.new(token_generator(5))
         end
 
         it 'raises an InvalidToken error' do
@@ -34,8 +34,8 @@ RSpec.describe AuthorizeApiRequest do
       end
 
       context 'when token is expired' do
-        let(:header) { { 'Authorization' => expired_token_generator(user.id) } }
-        subject(:request_obj) { described_class.new(header) }
+        let(:jwt) { expired_token_generator(user.id) }
+        subject(:request_obj) { described_class.new(jwt) }
 
         it 'raises ExceptionHandler::ExpiredSignature error' do
           expect { request_obj.call }
@@ -47,8 +47,8 @@ RSpec.describe AuthorizeApiRequest do
       end
 
       context 'fake token' do
-        let(:header) { { 'Authorization' => 'foobar' } }
-        subject(:invalid_request_obj) { described_class.new(header) }
+        let(:jwt) { 'foobar' }
+        subject(:invalid_request_obj) { described_class.new(jwt) }
 
         it 'handles JWT::DecodeError' do
           expect { invalid_request_obj.call }

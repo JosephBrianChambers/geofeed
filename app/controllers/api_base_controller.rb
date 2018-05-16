@@ -1,4 +1,5 @@
 class ApiBaseController < ActionController::API
+  include ActionController::Cookies
   include Response
   include ExceptionHandler
 
@@ -9,6 +10,6 @@ class ApiBaseController < ActionController::API
   private
 
   def authorize_request
-    @current_user = (AuthorizeApiRequest.new(request.headers).call)[:user]
+    @current_user = (AuthorizeApiRequest.new(cookies.signed[:jwt]).call)[:user]
   end
 end
