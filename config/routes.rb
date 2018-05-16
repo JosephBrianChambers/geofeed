@@ -19,4 +19,6 @@ Rails.application.routes.draw do
       resources :quotes, only: [:show]
     end
   end
+
+  get "*path", to: "root#index"
 end

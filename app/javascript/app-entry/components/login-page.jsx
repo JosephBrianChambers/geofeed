@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LoginForm from '../../shared/login-form';
+import LoginForm from './login-form';
 
 const clickHandler = (e) => {
   e.preventDefault;
