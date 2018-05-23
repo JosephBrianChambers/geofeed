@@ -10,7 +10,7 @@ import LoginPage from './views/login-page'
 import UserMapPage from './views/user-map-page'
 
 const App = (props) => (
-  <Router startingQuoteId={props.startingQuoteId}>
+  <Router>
     <Switch>
       <Route path='/' component={LandingPage} />
       <Route path='/login/' component={LoginPage} />
