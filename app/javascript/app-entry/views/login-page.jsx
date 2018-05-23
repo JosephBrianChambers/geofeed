@@ -1,16 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LoginForm from './login-form';
-
-const clickHandler = (e) => {
-  e.preventDefault;
-
-}
+import LoginForm from '../components/login-form';
 
 const LoginPage = (props) => (
-  <div>
-    <LoginForm />
-  </div>
+  <LoginForm />
 )
 
 export default LoginPage
