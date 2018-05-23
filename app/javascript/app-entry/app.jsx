@@ -4,8 +4,8 @@ import {
   Route
 } from 'react-router-dom'
 
-import LandingPage from './landing-page'
-import LoginPage from './login-page'
+import LandingPage from './components/landing-page'
+import LoginPage from './components/login-page'
 
 const App = (props) => (
   <Router startingQuoteId={props.startingQuoteId}>
