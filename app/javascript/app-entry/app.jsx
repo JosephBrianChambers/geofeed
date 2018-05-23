@@ -1,18 +1,21 @@
 import React from 'react'
 import {
   BrowserRouter as Router,
-  Route
+  Route,
+  Switch,
 } from 'react-router-dom'
 
 import LandingPage from './views/landing-page'
 import LoginPage from './views/login-page'
+import UserMapPage from './views/user-map-page'
 
 const App = (props) => (
   <Router startingQuoteId={props.startingQuoteId}>
-    <div>
+    <Switch>
       <Route path='/' component={LandingPage} />
       <Route path='/login/' component={LoginPage} />
-    </div>
+      <Route path='/user_map_page' component={UserMapPage} />
+    </Switch>
   </Router>
 )
 

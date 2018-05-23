@@ -1,5 +1,7 @@
 import React from 'react';
 import AuthApi from '../apis/auth'
+import { withRouter } from 'react-router-dom';
+import appRoutes from '../config/app-routes';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -26,8 +28,8 @@ class LoginForm extends React.Component {
     AuthApi.login(this.state.email, this.state.password)
     .catch((error) => {
       this.setState({isInvalidCredentials: true})
-    }).then(function (response) {
-      console.log(response);
+    }).then((response) => {
+      this.props.history.push(appRoutes.mapUserPage.path)
     })
   }
 
@@ -56,4 +58,4 @@ class LoginForm extends React.Component {
   }
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);
