@@ -31,6 +31,12 @@ class LoginForm extends React.Component {
     })
   }
 
+  loginError() {
+    return (
+      <p>Email or Password are incorrect.</p>
+    )
+  }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -43,9 +49,7 @@ class LoginForm extends React.Component {
           Password:
           <input type="text" name="password" value={this.state.password} onChange={this.handleChange} />
         </label>
-        <p style={{visibility: this.state.isInvalidCredentials ? 'visible' : 'hidden'}}>
-          Email or Password are incorrect. Please try again.
-        </p>
+        {this.state.isInvalidCredentials ? this.loginError() : null}
         <input type="submit" value="Submit" />
       </form>
     );
