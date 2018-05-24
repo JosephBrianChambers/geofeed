@@ -8,6 +8,10 @@ class Api::V1::UsersController < ApiBaseController
     json_response(response, :created)
   end
 
+  def show
+    json_response(current_user, :ok)
+  end
+
   private
 
   def user_params
