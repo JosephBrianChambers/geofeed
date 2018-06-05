@@ -1,7 +1,11 @@
 import React from 'react';
-import AuthApi from '../apis/auth'
 import { withRouter } from 'react-router-dom';
-import appRoutes from '../config/app-routes';
+import appRoutes from '../../config/app-routes';
+import { connect } from 'react-redux';
+import AuthApi from '../../apis/auth'
+import UserApi from '../../apis/user'
+import { updateUser } from '../../state/ducks/user'
+
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -10,6 +14,7 @@ class LoginForm extends React.Component {
     this.state = {
       email: '',
       password: '',
+      isLoggingIn: false,
       isInvalidCredentials: false
     };
 
@@ -23,13 +28,19 @@ class LoginForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.setState({isInvalidCredentials: false})
+    this.setState({ isLoggingIn: true, isInvalidCredentials: false })
 
     AuthApi.login(this.state.email, this.state.password)
-    .catch((error) => {
-      this.setState({isInvalidCredentials: true})
-    }).then((response) => {
+    .then((_) => {
+      return UserApi.getCurrentUser()
+    })
+    .then((response) => {
+      this.props.updateUser({ name: response.data.name })
+      this.setState({ isLoggingIn: false })
       this.props.history.push(appRoutes.mapUserPage.path)
+    })
+    .catch((error) => {
+      this.setState({ isLoggingIn: false, isInvalidCredentials: true })
     })
   }
 
@@ -58,4 +69,14 @@ class LoginForm extends React.Component {
   }
 }
 
-export default withRouter(LoginForm);
+const mapStateToProps = (state) => ({
+  isInvalidCredentials: state.user.isInvalidCredentials,
+  isAuthenticating: state.user.isInvalidCredentials,
+  isUserBeingFetched: state.user.isBeingFetched,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  updateUser: (payload) => { dispatch(updateUser(payload)) },
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginForm));

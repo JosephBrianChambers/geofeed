@@ -36,4 +36,5 @@ my thoughts on https://scotch.io/tutorials/build-a-restful-json-api-with-rails-5
 - todo: swap in fast json serializer
 - liked the exception handling to keep code simple
 - nice use of helper modules
-- added redux. I like this approach to split store-state/react-views and organize react directory's by function, and store (ducks) directories by feature. Will see if it pans out
+- added redux. I like this approach to split store-state/react-views and organize react directory's by feature, and store (ducks) directories by function. Will see if it pans out
+- after reading a bunch and coding & re-coding, I think I have a good sense of what my cononical redux boiler-plate-framework is: organize react by feature, organize redux by function, use single file ducks, reducers clean, action creaters basic and crud-ish, put any complex action creator (ie, waiting for success response, then redirect...) in component, break into smart/dumb if file becomes unweidly. Use "wrapper" when surrounding a single thing, use "container" when surrounding multiple things or for layout

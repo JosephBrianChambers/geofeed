@@ -1,4 +1,4 @@
-// import update from 'immutability-helper';
+import update from 'immutability-helper';
 import { createAction } from 'redux-actions';
 
 // Actions
@@ -6,7 +6,7 @@ const UPDATE_USER = 'user/UPDATE_USER';
 
 // Reducers
 export const userInitialState = {
-  name: ''
+  name: '',
 };
 
 export default function userReducer(state = userInitialState, action) {
@@ -22,3 +22,5 @@ export default function userReducer(state = userInitialState, action) {
 
 // Action Creators
 export const updateUser = createAction(UPDATE_USER);
+
+

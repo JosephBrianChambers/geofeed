@@ -10,13 +10,15 @@ import LoginPage from './views/login-page'
 import UserMapPage from './views/user-map-page'
 
 const App = (props) => (
-  <Router>
-    <Switch>
-      <Route path='/' component={LandingPage} />
-      <Route path='/login/' component={LoginPage} />
-      <Route path='/user_map_page' component={UserMapPage} />
-    </Switch>
-  </Router>
+  <div>
+    <Router>
+      <div>
+        <Route path='/' component={LandingPage} />
+        <Route path='/login' component={LoginPage} />
+        <Route path='/user_map_page' component={UserMapPage} />
+      </div>
+    </Router>
+  </div>
 )
 
 export default App

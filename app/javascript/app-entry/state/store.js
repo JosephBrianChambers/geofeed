@@ -9,6 +9,6 @@ const reducer = combineReducers({
   user: userReducer,
 });
 
-const configureStore = (initialState) => (createStore(reducer, initialState, middleware))
+const configureStore = (initialState) => { return createStore(reducer, initialState, middleware) }
 
 export default configureStore;
