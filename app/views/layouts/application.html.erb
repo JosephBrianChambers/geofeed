@@ -4,9 +4,12 @@
     <title>CononicalRails</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_pack_tag("app-entry") %>
   </head>
 
   <body>
     <%= yield %>
   </body>
+
+  <%= javascript_pack_tag("app-entry") %>
 </html>

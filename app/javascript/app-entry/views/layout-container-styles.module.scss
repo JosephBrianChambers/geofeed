@@ -1,0 +1,24 @@
+$header-height: 100px;
+$header-footer-color: lightblue;
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  height: $header-height;
+  background-color: $header-footer-color;
+  right: 0;
+  left: 0;
+}
+
+.header {
+  background-color: $header-footer-color;
+  position: absolute;
+  top: 0;
+  height: 100px;
+  right: 0;
+  left: 0;
+}
+
+.main {
+  margin-top: $header-height;
+}
