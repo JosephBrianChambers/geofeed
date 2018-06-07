@@ -1,0 +1,7 @@
+.map {
+  height: 300px;
+  width: 80%;
+  background-color: lightgrey;
+  margin: 0 10%;
+  border-radius: 10px;
+}
