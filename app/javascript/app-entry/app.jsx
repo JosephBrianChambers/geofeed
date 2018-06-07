@@ -1,24 +1,24 @@
 import React from 'react'
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Route,
   Switch,
 } from 'react-router-dom'
-
+import LayoutContainer from './views/layout-container'
 import LandingPage from './views/landing-page'
 import LoginPage from './views/login-page'
 import UserMapPage from './views/user-map-page'
 
 const App = (props) => (
-  <div>
-    <Router>
-      <div>
-        <Route path='/' component={LandingPage} />
+  <BrowserRouter>
+    <LayoutContainer>
+      <Switch>
+        <Route exact path='/' component={LandingPage} />
         <Route path='/login' component={LoginPage} />
         <Route path='/user_map_page' component={UserMapPage} />
-      </div>
-    </Router>
-  </div>
+      </Switch>
+    </LayoutContainer>
+  </BrowserRouter>
 )
 
 export default App

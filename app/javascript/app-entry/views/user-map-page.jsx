@@ -5,10 +5,7 @@ import UserApi from '../apis/user'
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-
-    };
+    this.state = {};
   }
 
   render() {
