@@ -32,6 +32,9 @@ gem 'jwt'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'will_paginate', '~> 3.1.0'
 gem 'webpacker', '~> 3.4'
+gem 'pg'
+gem 'activerecord-postgis-adapter'
+gem 'rgeo-geojson'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_11_170500) do
+ActiveRecord::Schema.define(version: 2018_06_12_201703) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "bubbles", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -24,6 +28,11 @@ ActiveRecord::Schema.define(version: 2018_04_11_170500) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["todo_id"], name: "index_items_on_todo_id"
+  end
+
+  create_table "moments", force: :cascade do |t|
+    t.geometry "loc", limit: {:srid=>3857, :type=>"st_point"}
+    t.index ["loc"], name: "index_moments_on_loc", using: :gist
   end
 
   create_table "quotes", force: :cascade do |t|
