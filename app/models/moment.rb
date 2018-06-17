@@ -7,7 +7,14 @@
 class Moment < ApplicationRecord
   FACTORY = RGeo::Geographic.simple_mercator_factory
 
-  belongs_to :event
+  has_many :event_moments
+  has_many :events, through: :event_moments
+  belongs_to :content_provider
+
+  validates :loc, presence: true
+  validates :title, presence: true
+  validates :author_id, presence: true
+  validates :content_privider_id, presence: true
 
   def self.within_polygon(geojson_polygon)
     rgeo_geom = RGeo::GeoJSON.decode(geojson_polygon, json_parser: :json, geo_factory: FACTORY)

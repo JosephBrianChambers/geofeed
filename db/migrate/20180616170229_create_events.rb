@@ -7,5 +7,9 @@ class CreateEvents < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+
+    add_index :events, :loc_fence, using: :gist
+    add_index :events, :start_time
+    add_index :events, :end_time
   end
 end
