@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :bubbles
   get "/", to: "root#index"
+  get '/auth/:provider/callback', to: 'api/v1/authentication#authenticate_from_oauth'
 
   namespace :api do
     scope module: :v2, constraints: ApiVersion.new('v2') do

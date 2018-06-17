@@ -4,4 +4,8 @@ class ContentProvider < ApplicationRecord
 
   validates :name, presence: true
   validates :code, presence: true
+
+  def self.[](code)
+    find_by(code: code)
+  end
 end
