@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_12_201703) do
+ActiveRecord::Schema.define(version: 2018_06_17_022735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
 
   create_table "bubbles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.geometry "loc_fence", limit: {:srid=>3857, :type=>"st_polygon"}
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -32,6 +40,8 @@ ActiveRecord::Schema.define(version: 2018_06_12_201703) do
 
   create_table "moments", force: :cascade do |t|
     t.geometry "loc", limit: {:srid=>3857, :type=>"st_point"}
+    t.integer "event_id"
+    t.index ["event_id"], name: "index_moments_on_event_id"
     t.index ["loc"], name: "index_moments_on_loc", using: :gist
   end
 

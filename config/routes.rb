@@ -19,8 +19,14 @@ Rails.application.routes.draw do
       end
 
       resources :quotes, only: [:show]
+
+      resources :events, only: [:create, :show] do
+        member do
+          get "fetch_content"
+        end
+      end
     end
   end
 
-  get "*path", to: "root#index"
+  get "*path", to: "root#index", constraints: lambda { |r| !(r.path =~ /api/) }
 end

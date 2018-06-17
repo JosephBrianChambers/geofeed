@@ -2,12 +2,12 @@ class AuthorizeApiRequest
   attr_reader :alleged_jwt
 
   def initialize(alleged_jwt)
-    raise(ExceptionHandler::MissingToken, Message.missing_token) unless alleged_jwt
-
     @alleged_jwt = alleged_jwt
   end
 
   def call
+    raise(ExceptionHandler::MissingToken, Message.missing_token) unless alleged_jwt
+
     {
       user: user
     }

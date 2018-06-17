@@ -2,6 +2,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server'
 import AuthApi from '../apis/auth'
 import UserApi from '../apis/user'
+import EventsApi from '../apis/events'
 import styles from './user-map-page-styles'
 
 class MapUserPage extends React.Component {
@@ -11,7 +12,7 @@ class MapUserPage extends React.Component {
     this.state = {
     };
 
-    this.renderEventMoments = this.renderEventMoments.bind(this)
+    this.createEvent = this.createEvent.bind(this)
     this.handleMomentClick = this.handleMomentClick.bind(this)
   }
 
@@ -44,8 +45,8 @@ class MapUserPage extends React.Component {
 
   registerMapHandlers() {
     const map = this.state.map;
-    map.on('draw.create', this.renderEventMoments);
-    map.on('draw.update', this.renderEventMoments);
+    map.on('draw.create', this.createEvent);
+    map.on('draw.update', this.createEvent);
     map.on('click', 'moments', this.handleMomentClick);
     map.on('mouseenter', 'moments', () => { map.getCanvas().style.cursor = 'pointer' });
     map.on('mouseleave', 'moments', () => { map.getCanvas().style.cursor = '' });
@@ -69,53 +70,38 @@ class MapUserPage extends React.Component {
       .addTo(map);
   }
 
-  renderEventMoments(e) {
-    const geoFence = e.features[0]
-    console.log(geoFence)
-
-    const geoJsonPoints = {
-      "type": "FeatureCollection",
-      "features": [
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-77.03238901390978, 38.913188059745586]
-          },
-          "properties": {
-            "title": "Mapbox DC",
-            "icon": "monument"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [-122.414, 37.776]
-          },
-          "properties": {
-            "title": "Mapbox SF",
-            "icon": "harbor"
-          }
-        }
-      ]
+  createEvent(e) {
+    const eventAttrs = {
+      geo_fence: e.features[0],
+      end_time: Math.floor(Date.now() / 1000),
+      start_time: Math.floor(Date.now() / 1000) - (60 * 60 * 2), // 2 hours
     }
 
-    this.state.map.addLayer({
-      "id": "moments",
-      "type": "symbol",
-      "source": {
-        "type": "geojson",
-        "data": geoJsonPoints,
-      },
-      "layout": {
-        "icon-image": "{icon}-15",
-        "text-field": "{title}",
-        "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-        "text-offset": [0, 0.6],
-        "text-anchor": "top"
-      }
-    });
+    EventsApi.create(eventAttrs).then((createResponse) => {
+      const eventId = createResponse.data.id
+
+      return EventsApi.fetchContent(eventId).then((_) => EventsApi.get(eventId))
+      // TODO: when lots of moments:
+      // - paginate moments:
+      // - findOrCreateLayer per provider
+      // - iterate moments and add each to layer
+
+      // this.state.map.addLayer({
+      //   "id": `event${eventId}Moments`,
+      //   "type": "symbol",
+      //   "source": {
+      //     "type": "geojson",
+      //     "data": geoJsonPoints,
+      //   },
+      //   "layout": {
+      //     "icon-image": "{icon}-15",
+      //     "text-field": "{title}",
+      //     "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+      //     "text-offset": [0, 0.6],
+      //     "text-anchor": "top"
+      //   }
+      // });
+    })
   }
 
   render() {

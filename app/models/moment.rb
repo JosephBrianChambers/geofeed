@@ -7,6 +7,8 @@
 class Moment < ApplicationRecord
   FACTORY = RGeo::Geographic.simple_mercator_factory
 
+  belongs_to :event
+
   def self.within_polygon(geojson_polygon)
     rgeo_geom = RGeo::GeoJSON.decode(geojson_polygon, json_parser: :json, geo_factory: FACTORY)
     projected_polygon = FACTORY.project(rgeo_geom.geometry)
