@@ -1,0 +1,97 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.twitter.com/1.1/search/tweets.json?count=2&geocode=37.783672270721034,-122.4209976196289,0.5km&include_entities=true&q=&result_type=recent
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.12.2
+      Authorization:
+      - Bearer foobar
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Content-Disposition:
+      - attachment; filename=json.json
+      Content-Length:
+      - '1917'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Thu, 19 Jul 2018 01:02:16 GMT
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Last-Modified:
+      - Thu, 19 Jul 2018 01:02:16 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - tsa_a
+      Set-Cookie:
+      - guest_id=v1%3A153196213675814441; Expires=Sat, 18 Jul 2020 01:02:16 GMT; Path=/;
+        Domain=.twitter.com
+      - personalization_id="v1_cGkPVvaJRlU4xe3WoWhdFg=="; Expires=Sat, 18 Jul 2020
+        01:02:16 GMT; Path=/; Domain=.twitter.com
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Access-Level:
+      - read
+      X-Connection-Hash:
+      - 76aa078735ee8df91781cb45e6767cea
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Rate-Limit-Limit:
+      - '450'
+      X-Rate-Limit-Remaining:
+      - '441'
+      X-Rate-Limit-Reset:
+      - '1531962180'
+      X-Response-Time:
+      - '38'
+      X-Transaction:
+      - 007f12cf00890b80
+      X-Twitter-Response-Tags:
+      - BouncerCompliant
+      X-Xss-Protection:
+      - 1; mode=block; report=https://twitter.com/i/xss_report
+    body:
+      encoding: ASCII-8BIT
+      string: '{"statuses":[{"created_at":"Thu Jul 19 00:59:54 +0000 2018","id":1019748633837649920,"id_str":"1019748633837649920","text":"JRuby
+        9.2 \ud83d\udc4d\ud83c\udffc\ud83d\udc4d\ud83c\udffc great work @jruby team","truncated":false,"entities":{"hashtags":[],"symbols":[],"user_mentions":[{"screen_name":"jruby","name":"JRuby
+        Dev Team","id":16132186,"id_str":"16132186","indices":[26,32]}],"urls":[]},"metadata":{"iso_language_code":"en","result_type":"recent"},"source":"\u003ca
+        href=\"http:\/\/tapbots.com\/tweetbot\" rel=\"nofollow\"\u003eTweetbot for
+        i\u039fS\u003c\/a\u003e","in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"user":{"id":3614351,"id_str":"3614351","name":"Callum
+        Jones","screen_name":"callumj","location":"San Francisco","description":"Web
+        apps. Ops. Australian (Perth) living in SF.\nEngineer at @HotelTonight","url":"https:\/\/t.co\/Y9Iak7U119","entities":{"url":{"urls":[{"url":"https:\/\/t.co\/Y9Iak7U119","expanded_url":"http:\/\/callumj.com","display_url":"callumj.com","indices":[0,23]}]},"description":{"urls":[]}},"protected":false,"followers_count":1169,"friends_count":354,"listed_count":105,"created_at":"Fri
+        Apr 06 12:07:00 +0000 2007","favourites_count":1271,"utc_offset":null,"time_zone":null,"geo_enabled":true,"verified":false,"statuses_count":12465,"lang":"en","contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"000000","profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme6\/bg.gif","profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme6\/bg.gif","profile_background_tile":false,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/498742835126890496\/VpoOTi_V_normal.jpeg","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/498742835126890496\/VpoOTi_V_normal.jpeg","profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/3614351\/1349197113","profile_link_color":"FF3300","profile_sidebar_border_color":"86A4A6","profile_sidebar_fill_color":"A0C5C7","profile_text_color":"333333","profile_use_background_image":true,"has_extended_profile":false,"default_profile":false,"default_profile_image":false,"following":null,"follow_request_sent":null,"notifications":null,"translator_type":"none"},"geo":null,"coordinates":null,"place":{"id":"01892a4b2fa1f2d6","url":"https:\/\/api.twitter.com\/1.1\/geo\/id\/01892a4b2fa1f2d6.json","place_type":"neighborhood","name":"Civic
+        Center Tenderloin","full_name":"Civic Center Tenderloin, San Francisco","country_code":"US","country":"United
+        States","contained_within":[],"bounding_box":{"type":"Polygon","coordinates":[[[-122.422218,37.775206],[-122.411993,37.775206],[-122.411993,37.79047],[-122.422218,37.79047]]]},"attributes":{}},"contributors":null,"is_quote_status":false,"retweet_count":0,"favorite_count":0,"favorited":false,"retweeted":false,"lang":"en"},{"created_at":"Thu
+        Jul 19 00:46:47 +0000 2018","id":1019745331855020033,"id_str":"1019745331855020033","text":"temperature
+        down 80\u00b0F -&gt; 77\u00b0F\nhumidity up 56% -&gt; 68%\nwind 18mph -&gt;
+        22mph","truncated":false,"entities":{"hashtags":[],"symbols":[],"user_mentions":[],"urls":[]},"metadata":{"iso_language_code":"en","result_type":"recent"},"source":"\u003ca
+        href=\"http:\/\/twitter.com\/SanFrancisco\" rel=\"nofollow\"\u003eSan Francisco
+        Warnings\u003c\/a\u003e","in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"user":{"id":585167005,"id_str":"585167005","name":"SF
+        Weather, Warnings","screen_name":"SanFrancisco","location":"San Francisco,
+        CA","description":"Weather updates, forecast, warnings and information for
+        San Francisco, CA. Sources: https:\/\/t.co\/AksTo0jtnS, NOAA, USGS.","url":null,"entities":{"description":{"urls":[{"url":"https:\/\/t.co\/AksTo0jtnS","expanded_url":"http:\/\/OpenWeatherMap.org","display_url":"OpenWeatherMap.org","indices":[84,107]}]}},"protected":false,"followers_count":9419,"friends_count":4,"listed_count":168,"created_at":"Sat
+        May 19 23:01:06 +0000 2012","favourites_count":4,"utc_offset":null,"time_zone":null,"geo_enabled":true,"verified":false,"statuses_count":21475,"lang":"en","contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"C0DEED","profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_tile":false,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/1019745299747635204\/mARK68aZ_normal.jpg","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/1019745299747635204\/mARK68aZ_normal.jpg","profile_link_color":"1DA1F2","profile_sidebar_border_color":"C0DEED","profile_sidebar_fill_color":"DDEEF6","profile_text_color":"333333","profile_use_background_image":true,"has_extended_profile":false,"default_profile":true,"default_profile_image":false,"following":null,"follow_request_sent":null,"notifications":null,"translator_type":"none"},"geo":{"type":"Point","coordinates":[37.78,-122.42]},"coordinates":{"type":"Point","coordinates":[-122.42,37.78]},"place":{"id":"5a110d312052166f","url":"https:\/\/api.twitter.com\/1.1\/geo\/id\/5a110d312052166f.json","place_type":"city","name":"San
+        Francisco","full_name":"San Francisco, CA","country_code":"US","country":"United
+        States","contained_within":[],"bounding_box":{"type":"Polygon","coordinates":[[[-122.514926,37.708075],[-122.357031,37.708075],[-122.357031,37.833238],[-122.514926,37.833238]]]},"attributes":{}},"contributors":null,"is_quote_status":false,"retweet_count":0,"favorite_count":0,"favorited":false,"retweeted":false,"lang":"en"}],"search_metadata":{"completed_in":0.019,"max_id":1019748633837649920,"max_id_str":"1019748633837649920","next_results":"?max_id=1019745331855020032&q=&geocode=37.783672270721034%2C-122.4209976196289%2C0.5km&count=2&include_entities=1&result_type=recent","query":"","refresh_url":"?since_id=1019748633837649920&q=&geocode=37.783672270721034%2C-122.4209976196289%2C0.5km&result_type=recent&include_entities=1","count":2,"since_id":0,"since_id_str":"0"}}'
+    http_version:
+  recorded_at: Thu, 19 Jul 2018 01:02:16 GMT
+recorded_with: VCR 4.0.0

@@ -9,6 +9,13 @@ require 'rspec/rails'
 
 require 'database_cleaner'
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+require 'vcr'
+
+VCR.configure do |c|
+  c.allow_http_connections_when_no_cassette = false
+  c.hook_into :webmock
+  c.cassette_library_dir = Rails.root.join("spec", "vcr")
+end
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -63,3 +70,4 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+

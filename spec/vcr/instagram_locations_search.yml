@@ -1,0 +1,80 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.instagram.com/v1/locations/search?access_token=foobar&distance=500&lat=37.783672270721034&lng=-122.4209976196289
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.12.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '492'
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Sat, 01 Jan 2000 00:00:00 GMT
+      Vary:
+      - Cookie, Accept-Language, Accept-Encoding
+      Content-Language:
+      - en
+      Date:
+      - Sat, 14 Jul 2018 00:28:06 GMT
+      Set-Cookie:
+      - csrftoken=AprdOboImItwGdVW6XRu7BdUYhewOiDe; Domain=.instagram.com; expires=Sat,
+        13-Jul-2019 00:28:06 GMT; Max-Age=31449600; Path=/; Secure
+      - mcd=3; Domain=.instagram.com; Path=/
+      - rur=FRC; Domain=.instagram.com; Path=/
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '710'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"data": [{"id": "44961364", "name": "San Francisco, California", "latitude":
+        37.7793, "longitude": -122.419}, {"id": "1620031454964122", "name": "Hinata",
+        "latitude": 37.78324, "longitude": -122.42048}, {"id": "44961364", "name":
+        "San Francisco, California", "latitude": 37.7793, "longitude": -122.419},
+        {"id": "5348828", "name": "Lamborghini San Francisco", "latitude": 37.78407,
+        "longitude": -122.42129}, {"id": "368022523536058", "name": "City Halls",
+        "latitude": 37.77929, "longitude": -122.41922}, {"id": "15707329", "name":
+        "Civic Center", "latitude": 37.779471064266, "longitude": -122.41715141625},
+        {"id": "236385752", "name": "Fillmore District, San Francisco", "latitude":
+        37.790147, "longitude": -122.433081}, {"id": "901313416663184", "name": "Tesla
+        SF", "latitude": 37.78443, "longitude": -122.42166}, {"id": "1726022884306777",
+        "name": "Downtown San Francisco City", "latitude": 37.77929, "longitude":
+        -122.41922}, {"id": "581081432", "name": "White Chapel", "latitude": 35.0494,
+        "longitude": -90.1172}, {"id": "867730534", "name": "AMC Van Ness 14", "latitude":
+        37.785045583605, "longitude": -122.42071842828}, {"id": "333055057173922",
+        "name": "Larkin Street Youth Service", "latitude": 37.78375, "longitude":
+        -122.42047}, {"id": "211881545", "name": "Twin Peaks (San Francisco)", "latitude":
+        37.751586, "longitude": -122.447722}, {"id": "213737803", "name": "Tenderloin,
+        San Francisco", "latitude": 37.788287940559, "longitude": -122.41600722432},
+        {"id": "200092467200414", "name": "Mr. Holmes Bakehouse", "latitude": 37.7876654,
+        "longitude": -122.4182267}, {"id": "924622326", "name": "San Francisco City
+        Hall", "latitude": 37.79094, "longitude": -122.39906}, {"id": "3001795", "name":
+        "Union Square, San Francisco", "latitude": 37.787069070793, "longitude": -122.40759938952},
+        {"id": "280800296", "name": "San Francisco Pride", "latitude": 37.7709618,
+        "longitude": -122.424202}, {"id": "283804215390455", "name": "Palace of Fine
+        Arts Theatre", "latitude": 37.802125239059, "longitude": -122.44825058286},
+        {"id": "1630", "name": "Brenda''s French Soul Food", "latitude": 37.7829,
+        "longitude": -122.41887}], "meta": {"code": 200}}'
+    http_version:
+  recorded_at: Sat, 14 Jul 2018 00:28:06 GMT
+recorded_with: VCR 4.0.0

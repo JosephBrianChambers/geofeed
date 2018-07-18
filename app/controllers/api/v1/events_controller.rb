@@ -11,7 +11,8 @@ class Api::V1::EventsController < ApiBaseController
 
   def fetch_content
     event = Event.find(params[:id])
-    json_response({})
+    FetchEventContent::Instagram.call(event)
+    FetchEventContent::Twitter.call(event)
   end
 
   private

@@ -1,4 +1,5 @@
 namespace :start do
+  # postgres -D /usr/local/var/postgres
   task :development do
     exec 'foreman start -f Procfile.dev -p 3001'
   end
