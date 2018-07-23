@@ -10,6 +10,7 @@ class MapUserPage extends React.Component {
     super(props);
 
     this.state = {
+      errorMessage: ""
     };
 
     this.createEvent = this.createEvent.bind(this)
@@ -71,36 +72,56 @@ class MapUserPage extends React.Component {
   }
 
   createEvent(e) {
+    this.setState({ errorMessage: "" })
+
     const eventAttrs = {
       geo_fence: e.features[0],
       end_time: Math.floor(Date.now() / 1000),
       start_time: Math.floor(Date.now() / 1000) - (60 * 60 * 2), // 2 hours
     }
 
-    EventsApi.create(eventAttrs).then((createResponse) => {
-      const eventId = createResponse.data.id
+    EventsApi.create(eventAttrs).then((response) => {
+      const eventId = response.data.id
 
-      return EventsApi.fetchContent(eventId).then((_) => EventsApi.get(eventId))
-      // TODO: when lots of moments:
-      // - paginate moments:
-      // - findOrCreateLayer per provider
-      // - iterate moments and add each to layer
+      // TODO: create unique event layer (and handlers) here & add moments as fetched
+      EventsApi.fetchContent(eventId).then((_) => {
+        // TODO: poll when request processed in background job
+        EventsApi.get(eventId).then((get_response) => {
+          // TODO: add moments to existing layer
+          const layer = {
+            "id": 'moments',
+            "type": "symbol",
+            "source": {
+              "type": "geojson",
+              "data": {
+                "type": "FeatureCollection",
+                "features": get_response.data.moments.map((moment) => (
+                  {
+                    type: "Feature",
+                    geometry: moment.geojson_point,
+                    properties: {
+                      title: 'Mapbox',
+                      description: 'San Francisco, California',
+                      icon: 'star'
+                    }
+                  }
+                ))
+              }
+            },
+            "layout": {
+              "icon-image": "{icon}-15",
+              "text-field": "{title}",
+              "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+              "text-offset": [0, 0.6],
+              "text-anchor": "top"
+            }
+          }
 
-      // this.state.map.addLayer({
-      //   "id": `event${eventId}Moments`,
-      //   "type": "symbol",
-      //   "source": {
-      //     "type": "geojson",
-      //     "data": geoJsonPoints,
-      //   },
-      //   "layout": {
-      //     "icon-image": "{icon}-15",
-      //     "text-field": "{title}",
-      //     "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-      //     "text-offset": [0, 0.6],
-      //     "text-anchor": "top"
-      //   }
-      // });
+          this.state.map.addLayer(layer);
+        })
+      })
+    }).catch((error) => {
+      this.setState({ errorMessage: error.response.data.message})
     })
   }
 
@@ -108,6 +129,7 @@ class MapUserPage extends React.Component {
     return (
       <div>
         <div id="map" className={styles.map}></div>
+        <p>{this.state.errorMessage}</p>
       </div>
     );
   }

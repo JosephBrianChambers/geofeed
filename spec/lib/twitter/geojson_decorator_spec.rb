@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Twitter::GeojsonDecorator do
   subject { Twitter::GeojsonDecorator.new(geojson_polygon) }
 
-  let(:geojson_polygon) { build(:geojson_polygon) }
+  let(:geojson_polygon) { build(:geojson_polygon, :sf_vanness) }
 
   describe "#centroid_lat" do
     it "returns centroid latitude" do

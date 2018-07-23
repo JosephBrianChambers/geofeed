@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_17_195601) do
+ActiveRecord::Schema.define(version: 2018_07_20_220808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2018_06_17_195601) do
     t.string "handle"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "provider_id"
     t.index ["content_provider_id"], name: "index_authors_on_content_provider_id"
     t.index ["email"], name: "index_authors_on_email"
     t.index ["handle"], name: "index_authors_on_handle"
@@ -83,10 +84,10 @@ ActiveRecord::Schema.define(version: 2018_06_17_195601) do
   create_table "moments", force: :cascade do |t|
     t.geometry "loc", limit: {:srid=>3857, :type=>"st_point"}
     t.string "title"
-    t.string "author_id"
     t.text "caption"
-    t.string "content_provider_id"
-    t.index ["author_id"], name: "index_moments_on_author_id"
+    t.integer "content_provider_id"
+    t.string "provider_id"
+    t.string "provider_author_id"
     t.index ["loc"], name: "index_moments_on_loc", using: :gist
   end
 

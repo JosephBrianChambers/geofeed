@@ -2,6 +2,7 @@ module Twitter
   class ApiClient
     VERSION = "1.1"
     HOST = "https://api.twitter.com"
+    AUTHORIZATION_HEADER = "Bearer #{Rails.application.secrets.twitter_app_bearer_token}"
 
     def search_tweets(options)
       params = {
@@ -17,6 +18,19 @@ module Twitter
       response = connection("#{HOST}/#{VERSION}/search/tweets.json?#{params.to_query}").get do |req|
         req.headers["Authorization"] = "Bearer #{Rails.application.secrets.twitter_app_bearer_token}"
       end
+
+      JSON.parse(response.body)
+    end
+
+    # TODO: implement better logging & and bad request capturing
+    def search_query(query_parameters_string)
+      url = "#{HOST}/#{VERSION}/search/tweets.json#{query_parameters_string}"
+
+      response = connection(url).get do |req|
+        req.headers["Authorization"] = AUTHORIZATION_HEADER
+      end
+
+      raise RuntimeError, response unless response.status == 200
 
       JSON.parse(response.body)
     end

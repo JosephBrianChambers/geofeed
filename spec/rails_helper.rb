@@ -31,15 +31,17 @@ RSpec.configure do |config|
   config.include ControllerSpecHelper
   config.include FactoryBot::Syntax::Methods
 
+
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.strategy = :transaction
   end
 
   config.around(:each) do |example|
-    DatabaseCleaner.cleaning do
+    # TODO: learn more about this and "DatabaseCleaner.clean_with(:truncation)", this needed if using transactional_fixtures?
+    # DatabaseCleaner.cleaning do
       example.run
-    end
+    # end
   end
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
