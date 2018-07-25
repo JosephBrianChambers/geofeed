@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_20_220808) do
+ActiveRecord::Schema.define(version: 2018_07_25_204119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,11 +29,6 @@ ActiveRecord::Schema.define(version: 2018_07_20_220808) do
     t.index ["email"], name: "index_authors_on_email"
     t.index ["handle"], name: "index_authors_on_handle"
     t.index ["name"], name: "index_authors_on_name"
-  end
-
-  create_table "bubbles", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "content_providers", force: :cascade do |t|
@@ -64,15 +59,6 @@ ActiveRecord::Schema.define(version: 2018_07_20_220808) do
     t.index ["start_time"], name: "index_events_on_start_time"
   end
 
-  create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.boolean "done"
-    t.integer "todo_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["todo_id"], name: "index_items_on_todo_id"
-  end
-
   create_table "media", force: :cascade do |t|
     t.string "url"
     t.integer "moment_id"
@@ -101,20 +87,6 @@ ActiveRecord::Schema.define(version: 2018_07_20_220808) do
     t.index ["content_provider_id"], name: "index_provider_access_tokens_on_content_provider_id"
     t.index ["expires_at"], name: "index_provider_access_tokens_on_expires_at"
     t.index ["user_id"], name: "index_provider_access_tokens_on_user_id"
-  end
-
-  create_table "quotes", force: :cascade do |t|
-    t.string "text"
-    t.string "author"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "todos", force: :cascade do |t|
-    t.string "title"
-    t.string "created_by"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
