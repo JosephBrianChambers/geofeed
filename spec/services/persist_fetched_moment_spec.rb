@@ -1,24 +1,26 @@
 require 'rails_helper'
 
-RSpec.describe FetchEventContent::Twitter do
-  subject { FetchEventContent::Twitter.new(event, ) }
+RSpec.describe PersistFetchedMoment do
+  fixtures :content_providers
 
-  describe "#save_records" do
+  subject { PersistFetchedMoment.new(event, moment) }
+
+  describe "#persist_records" do
     let(:event) { create(:event) }
 
     describe "when moment is valid" do
       let(:moment) { build(:moment) }
 
       it "persists moment" do
-        expect { subject.save_records(moment) }.to change { Moment.count }.by(1)
+        expect { subject.persist_records }.to change { Moment.count }.by(1)
       end
 
       it "persists author" do
-        expect { subject.save_records(moment) }.to change { Author.count }.by(1)
+        expect { subject.persist_records }.to change { Author.count }.by(1)
       end
 
       it "adds moment to events moment" do
-        expect { subject.save_records(moment) }.to change { event.moments.count }.by(1)
+        expect { subject.persist_records }.to change { event.moments.count }.by(1)
       end
 
       describe "when moment author already persisted" do
@@ -34,15 +36,15 @@ RSpec.describe FetchEventContent::Twitter do
         end
 
         it "persists moment" do
-          expect { subject.save_records(moment) }.to change { Moment.count }.by(1)
+          expect { subject.persist_records }.to change { Moment.count }.by(1)
         end
 
         it "does not persist author" do
-          expect { subject.save_records(moment) }.to change { Author.count }.by(0)
+          expect { subject.persist_records }.to change { Author.count }.by(0)
         end
 
         it "adds moment to events moment" do
-          expect { subject.save_records(moment) }.to change { event.moments.count }.by(1)
+          expect { subject.persist_records }.to change { event.moments.count }.by(1)
         end
       end
     end
@@ -60,10 +62,9 @@ RSpec.describe FetchEventContent::Twitter do
         end
 
         it "does not persist moment" do
-          expect { subject.save_records(moment) }.to change { Moment.count }.by(0)
+          expect { subject.persist_records }.to change { Moment.count }.by(0)
         end
       end
-
     end
   end
 end
