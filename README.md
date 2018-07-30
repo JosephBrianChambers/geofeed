@@ -1,40 +1,51 @@
-# README
+# Geofeed
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Geofeed is a web app to display "moments" boxed by location & time
 
-Things you may want to cover:
+"moments" are content from different providers tagged with location & time, ie
 
-* Ruby version
+  - Twitter tweets
+  - Citizen alerts
+  - Nextdoor posts
+  - Weather Underground reports
+  - ect..
 
-* System dependencies
+"events" are collections of location & time boxed "moments"
 
-* Configuration
+TODO: .gif here
 
-* Database creation
+## About
 
-* Database initialization
+Illustrative rails app to build / play / scale upon.
 
-* How to run the test suite
+  - rails
+  - rspec
+  - faker
+  - vcr
+  - sidekiq
+  - jwt
+  - webpacker
+  - redux
+  - react
+  - ect..
 
-* Services (job queues, cache servers, search engines, etc.)
+concepts:
 
-* Deployment instructions
+  - geo
+  - design patterns
+  - service object vs lib
+  - api versioning
+  - serialization
+  - react by feature
+  - redux by function
+  - css modules
+  - oauth
+  - authenticated users
+  - database modeling
+  - UI
+  - ect..
 
-* ...
 
+This repo started as my progress through rails 5 api tutorial; thanks [scotch.io](https://scotch.io/tutorials/build-a-restful-json-api-with-rails-5-part-one)! & [andela](https://github.com/andela)!
 
-
-my thoughts on https://scotch.io/tutorials/build-a-restful-json-api-with-rails-5-part-one
-- thanks https://github.com/andela and https://scotch.io/ !
-- nice rails api boiler plate as any to get a project up and running
-- solid boiler plate to scale/swap off of: versioned api, faker, rspec, pagination, serialization, jwt token based auth
-- jwt token based auth security TODOS:
-* eliminate XSS attacks on client local storage by storing jwt in cookie config'ed with 'http_only' & 'secure'. The signed jwt is essentially plain text (base64 encoded), so implement encrypt/decrypt during read/write/auth token. Keep rails csrf protection unaffected.
-- oof, after impementing jwt joepie91 has some good points: http://cryto.net/~joepie91/blog/2016/06/13/stop-using-jwt-for-sessions/ oh well, at least some exp
-- learned about content negotiation, cool
-- todo: swap in fast json serializer
-- liked the exception handling to keep code simple
-- nice use of helper modules
-- added redux. I like this approach to split store-state/react-views and organize react directory's by feature, and store (ducks) directories by function. Will see if it pans out
-- after reading a bunch and coding & re-coding, I think I have a good sense of what my cononical redux boiler-plate-framework is: organize react by feature, organize redux by function, use single file ducks, reducers clean, action creaters basic and crud-ish, put any complex action creator (ie, waiting for success response, then redirect...) in component, break into smart/dumb if file becomes unweidly. Use "wrapper" when surrounding a single thing, use "container" when surrounding multiple things or for layout
+It's now boilerplate pre-packed with application logic serving as reference code. I'll eventually rip out pure boiler plate into another repo and this will become a fun side project.
