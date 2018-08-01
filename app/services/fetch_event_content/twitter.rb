@@ -13,8 +13,7 @@ module FetchEventContent
     def call
       twitter_client.geo_fence_tweets(event.geojson, start_time: 2.hours.ago, end_time: Time.now) do |raw_tweet|
         moment = MomentAdapter::Twitter.new(raw_tweet).moment
-        moment.author = AuthorAdapter::Twitter.new(raw_tweet).author
-        PersistFetchedMoment.call(event, moment)
+        PersistFetchedMoment.call(event, moment, moment.author) if moment.loc
       end
     end
 

@@ -52,16 +52,27 @@ RSpec.describe MomentAdapter::Twitter do
     end
   end
 
-  describe "#media" do
+  describe "#medias" do
     describe "when geo tweet" do
-      describe "when tweet has no media" do
+      describe "when raw tweet does not have media" do
         let(:raw_tweet) do
           path = Rails.root.join("spec", "fixtures", "raw_geo_tweet.json")
           JSON.parse(File.read(path))
         end
 
         it "returns nil" do
-          expect(subject.media).to eq(nil)
+          expect(subject.medias).to eq(nil)
+        end
+      end
+
+      describe "when raw tweet has media" do
+        let(:raw_tweet) do
+          path = Rails.root.join("spec", "fixtures", "raw_geo_tweet_photo.json")
+          JSON.parse(File.read(path))
+        end
+
+        it "returns medias" do
+          expect(subject.medias.first.url).to eq("https://pbs.twimg.com/media/DjclOUQU0AEKb6k.jpg")
         end
       end
     end

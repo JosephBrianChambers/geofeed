@@ -16,7 +16,7 @@ module MomentAdapter
         lng_lat: lng_lat,
         title: title,
         caption: caption,
-        media: media,
+        medias: medias,
         author: author,
         provider_id: provider_id,
       }.compact
@@ -42,8 +42,10 @@ module MomentAdapter
       AuthorAdapter::Twitter.new(raw_tweet).author
     end
 
-    def media
-      # MediaAdapter::Twitter.new(raw_tweet).media
+    def medias
+      return unless (raw_medias = raw_tweet.dig("entities", "media")).present?
+
+      raw_medias.map { |rm| MediaAdapter::Twitter.new(rm).media }
     end
 
     def provider_id

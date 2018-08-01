@@ -1,9 +1,9 @@
 module MediaAdapter
   class Twitter
-    attr_reader :raw_tweet
+    attr_reader :raw_media
 
-    def initialize(raw_tweet)
-      @raw_tweet = raw_tweet
+    def initialize(raw_media)
+      @raw_media = raw_media
     end
 
     def media
@@ -17,7 +17,7 @@ module MediaAdapter
     end
 
     def url
-      raw_tweet.dig("")
+      raw_media["media_url_https"]
     end
   end
 end

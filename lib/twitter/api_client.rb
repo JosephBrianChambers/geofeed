@@ -30,7 +30,7 @@ module Twitter
         req.headers["Authorization"] = AUTHORIZATION_HEADER
       end
 
-      raise RuntimeError, response unless response.status == 200
+      raise RuntimeError, response.body unless response.status == 200
 
       JSON.parse(response.body)
     end

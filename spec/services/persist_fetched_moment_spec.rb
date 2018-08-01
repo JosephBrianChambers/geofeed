@@ -3,13 +3,14 @@ require 'rails_helper'
 RSpec.describe PersistFetchedMoment do
   fixtures :content_providers
 
-  subject { PersistFetchedMoment.new(event, moment) }
+  subject { PersistFetchedMoment.new(event, moment, author) }
 
   describe "#persist_records" do
     let(:event) { create(:event) }
 
     describe "when moment is valid" do
       let(:moment) { build(:moment) }
+      let(:author) { moment.author }
 
       it "persists moment" do
         expect { subject.persist_records }.to change { Moment.count }.by(1)
@@ -60,6 +61,7 @@ RSpec.describe PersistFetchedMoment do
 
           build(:moment, attrs)
         end
+        let(:author) { build(:author) }
 
         it "does not persist moment" do
           expect { subject.persist_records }.to change { Moment.count }.by(0)
