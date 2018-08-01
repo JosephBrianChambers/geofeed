@@ -22,6 +22,7 @@ class MapUserPage extends React.Component {
   }
 
   initMap() {
+    // TODO: don't hardcode
     mapboxgl.accessToken = 'pk.eyJ1IjoiaGVpZC1qb2huIiwiYSI6ImNqZ2w1ZWxsZjFpNngzMmw0bzl0MmZra2YifQ.PoNBBITbAVBFGBc_nWRpFw';
 
     const map = new mapboxgl.Map({
