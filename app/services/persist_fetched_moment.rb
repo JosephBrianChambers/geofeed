@@ -1,18 +1,21 @@
 class PersistFetchedMoment
-  attr_accessor :event, :moment, :parsed_author
+  attr_reader :event, :moment_attributes, :author_attributes, :medias_attributes
 
-  def self.call(event, moment, author)
-    new(event, moment, author).persist_records
+  def self.call(event, parser_adapter)
+    new(event, parser_adapter).call
   end
 
-  def initialize(event, moment, parsed_author)
+  def initialize(event, parser_adapter)
     @event = event
-    @moment = moment
-    @parsed_author = parsed_author
+    @moment_attributes = parser_adapter.moment_attributes
+    @author_attributes = parser_adapter.author_attributes
+    @medias_attributes = parser_adapter.medias_attributes
   end
 
-  def persist_records
+  def call
+    moment = Moment.new(moment_attributes)
     moment.author = persist_author
+    moment.medias = medias_attributes.map { |attrs| Media.new(attrs) }
     moment.save!
     moment.events << event
   rescue ActiveRecord::RecordInvalid => e
@@ -24,9 +27,9 @@ class PersistFetchedMoment
   private
 
   def persist_author
-    attrs = parsed_author.attributes
-    a = Author.find_or_initialize_by(attrs.slice(:content_provider_id, :provider_id)) { |a| a.assign_attributes(attrs) }
-    a.save!
-    a
+    Author.find_or_initialize_by(author_attributes.slice(:content_provider_id, :provider_id)) do |author|
+      author.assign_attributes(author_attributes)
+      author.save!
+    end
   end
 end

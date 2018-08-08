@@ -46,10 +46,16 @@ RSpec.describe "Events Api", type: :request do
           "id" => event.id,
           "moments" => [
             {
-              "id"=>event.moments.first.id,
-              "geojson_point"=>{
-                "type"=>"Point",
-                "coordinates"=>[-116.53397300000002, 31.77672500000001]
+              "id" => event.moments.first.id,
+              "geojson_feature" => {
+                "type" => "Feature",
+                "geometry" => {
+                  "type"=>"Point",
+                  "coordinates"=>[-116.53397300000002, 31.77672500000001]
+                },
+                "properties" => {
+                  "id" => event.moments.first.id
+                }
               }
             }
           ],

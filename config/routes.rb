@@ -18,6 +18,8 @@ Rails.application.routes.draw do
           get "fetch_content"
         end
       end
+
+      resources :moments, only: [:show]
     end
   end
 

@@ -1,7 +1,13 @@
 class Api::V1::EventSerializer::MomentSerializer < ActiveModel::Serializer
-  attributes :id, :geojson_point
+  attributes :id, :geojson_feature
 
-  def geojson_point
-    object.geojson
+  def geojson_feature
+    {
+      type: "Feature",
+      geometry: object.geojson,
+      properties: {
+        id: object.id
+      }
+    }
   end
 end

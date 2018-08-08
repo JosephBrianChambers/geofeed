@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe MediaAdapter::Twitter do
-  subject { MediaAdapter::Twitter.new(raw_media) }
+RSpec.describe MomentParserAdapter::Tweet::MediaAttributes do
+  subject { MomentParserAdapter::Tweet::MediaAttributes.new(raw_media) }
 
   describe "#url" do
     let(:raw_media) do
@@ -14,14 +14,14 @@ RSpec.describe MediaAdapter::Twitter do
     end
   end
 
-  describe "#media" do
+  describe "#media_attributes" do
     let(:raw_media) do
       path = Rails.root.join("spec", "fixtures", "raw_tweet_photo_media.json")
       JSON.parse(File.read(path))
     end
 
-    it "returns media" do
-      expect(subject.media).to be_a(Media)
+    it "returns media attributes" do
+      expect(subject.media_attributes).to eq({url: "https://pbs.twimg.com/media/DjclOUQU0AEKb6k.jpg" })
     end
   end
 end

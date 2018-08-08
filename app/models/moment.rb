@@ -44,4 +44,8 @@ class Moment < ApplicationRecord
   def geojson
     RGeo::GeoJSON.encode(loc_geo)
   end
+
+  # def lng_lat
+  #   [loc_geo.lon, loc_geo.lat]
+  # end
 end
