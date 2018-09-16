@@ -116,9 +116,12 @@ class MapUserPage extends React.Component {
       start_time: Math.floor(Date.now() / 1000) - (60 * 60 * 2), // 2 hours
     }
 
-    EventsApi.create(eventAttrs).then((r) => (
-      Promise.all([r.data.id, EventsApi.fetchContent(r.data.id)])
-    )).then(([eventId, _]) => (
+    let eventId
+
+    EventsApi.create(eventAttrs).then((r) => {
+      eventId = r.data.id;
+      return EventsApi.fetchContent(r.data.id)
+    }).then((_) => (
       EventsApi.get(eventId)
     )).then((r) => {
       const momentFeatures = r.data.moments.map(m => m.geojson_feature)

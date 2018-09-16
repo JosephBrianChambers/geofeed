@@ -15,6 +15,7 @@ class Api::V1::EventsController < ApiBaseController
     # TODO: background job
     # FetchEventContent::Instagram.call(event)
     FetchEventContent::Twitter.call(event)
+    FetchEventContent::Citizen.call(event)
     json_response({})
   end
 

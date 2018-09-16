@@ -13,11 +13,11 @@ class PersistFetchedMoment
   end
 
   def call
-    moment = Moment.new(moment_attributes)
+    moment = find_or_initialize_moment
     moment.author = persist_author
     moment.medias = medias_attributes.map { |attrs| Media.new(attrs) }
     moment.save!
-    moment.events << event
+    EventMoment.create(event_id: event.id, moment_id: moment.id)
   rescue ActiveRecord::RecordInvalid => e
     return if !!(e.message =~ /#{Moment::PROVIDER_DUPLICATE_MESSAGE}/)
 
@@ -30,6 +30,12 @@ class PersistFetchedMoment
     Author.find_or_initialize_by(author_attributes.slice(:content_provider_id, :provider_id)) do |author|
       author.assign_attributes(author_attributes)
       author.save!
+    end
+  end
+
+  def find_or_initialize_moment
+    Moment.find_or_initialize_by(moment_attributes.slice(:content_provider_id, :provider_id)) do |moment|
+      moment.assign_attributes(moment_attributes)
     end
   end
 end

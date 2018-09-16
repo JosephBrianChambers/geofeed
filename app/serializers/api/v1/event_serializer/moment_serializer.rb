@@ -6,7 +6,7 @@ class Api::V1::EventSerializer::MomentSerializer < ActiveModel::Serializer
       type: "Feature",
       geometry: object.geojson,
       properties: {
-        id: object.id
+        id: object.id,
       }
     }
   end
