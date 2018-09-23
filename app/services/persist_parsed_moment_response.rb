@@ -1,4 +1,4 @@
-class PersistFetchedMoment
+class PersistParsedMomentResponse
   attr_reader :event, :moment_attributes, :author_attributes, :medias_attributes
 
   def self.call(event, parser_adapter)

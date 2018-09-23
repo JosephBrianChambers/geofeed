@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe PersistFetchedMoment do
+RSpec.describe PersistParsedMomentResponse do
   fixtures :content_providers
 
-  subject { PersistFetchedMoment.new(event, parser_adapter) }
+  subject { PersistParsedMomentResponse.new(event, parser_adapter) }
 
   let(:parser_adapter) do
     stubs = {

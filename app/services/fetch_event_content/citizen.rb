@@ -17,7 +17,7 @@ module FetchEventContent
         next unless (lng_lat = parser_adapter.moment_attributes[:lng_lat]).present?
         next unless event.includes_lng_lat?(lng_lat)
 
-        PersistFetchedMoment.call(event, parser_adapter)
+        PersistParsedMomentResponse.call(event, parser_adapter)
       end
     end
 

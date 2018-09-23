@@ -101,7 +101,10 @@ RSpec.describe "Events Api", type: :request do
 
     subject { get "/api/events/#{event.id}/fetch_content" }
 
-    before { expect(FetchEventContent::Twitter).to receive(:call) }
+    before do
+      expect(FetchEventContent::Twitter).to receive(:call)
+      expect(FetchEventContent::Citizen).to receive(:call)
+    end
 
     describe "when valid request" do
       it "returns successful response" do
