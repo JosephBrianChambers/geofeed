@@ -54,7 +54,8 @@ RSpec.describe "Events Api", type: :request do
                   "coordinates"=>[-116.53397300000002, 31.77672500000001]
                 },
                 "properties" => {
-                  "id" => event.moments.first.id
+                  "id" => event.moments.first.id,
+                  "content_provider_code" => "foo_bar"
                 }
               }
             }

@@ -7,6 +7,7 @@ class Api::V1::EventSerializer::MomentSerializer < ActiveModel::Serializer
       geometry: object.geojson,
       properties: {
         id: object.id,
+        content_provider_code: object.content_provider.code
       }
     }
   end

@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { renderToString } from 'react-dom/server'
-import AuthApi from '../apis/auth'
 import MomentsApi from '../apis/moments'
 import EventsApi from '../apis/events'
 import styles from './user-map-page-styles'
 import MapMomentPopup from './components/map-moment-popup'
+import citizenIconPath from '../../images/icons/citizen.jpeg'
+import twitterIconPath from '../../images/icons/twitter.jpeg'
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiaGVpZC1qb2huIiwiYSI6ImNqZ2w1ZWxsZjFpNngzMmw0bzl0MmZra2YifQ.PoNBBITbAVBFGBc_nWRpFw';
 
 class MapUserPage extends React.Component {
   constructor(props) {
@@ -13,31 +16,35 @@ class MapUserPage extends React.Component {
 
     this.state = {
       errorMessage: "",
-      momentGeojsonFeatures: []
     };
 
     this.createEvent = this.createEvent.bind(this)
     this.handleMomentClick = this.handleMomentClick.bind(this)
-    this.setMomentsSourceData = this.setMomentsSourceData.bind(this)
   }
 
   componentDidMount() {
-    this.setState({ map: this.createMap() }, () => { this.initializeMap() })
-  }
-
-  createMap() {
-    mapboxgl.accessToken = 'pk.eyJ1IjoiaGVpZC1qb2huIiwiYSI6ImNqZ2w1ZWxsZjFpNngzMmw0bzl0MmZra2YifQ.PoNBBITbAVBFGBc_nWRpFw';
-
-    return new mapboxgl.Map({
-      container: 'map',
+    this.map = new mapboxgl.Map({
+      container: this.mapContainer,
       style: 'mapbox://styles/mapbox/streets-v9',
       center: [-122.4194, 37.7749],
       zoom: 11,
     })
+
+    this.initializeMap()
+    this.momentGeojsonFeatures = []
+  }
+
+  componentWillUnmount() {
+    this.map.remove();
   }
 
   initializeMap() {
-    const map = this.state.map;
+    const map = this.map;
+
+    const citizenLogoImgTag = new Image()
+    citizenLogoImgTag.src = citizenIconPath
+    const twitterLogoImgTag = new Image()
+    twitterLogoImgTag.src = twitterIconPath
 
     const drawControl = new MapboxDraw({
       displayControlsDefault: false,
@@ -47,37 +54,45 @@ class MapUserPage extends React.Component {
       },
     })
 
-    map.on('style.load', () => {
+    map.addControl(drawControl)
+    map.on('draw.create', this.createEvent);
+    map.on('draw.update', this.createEvent);
+
+    map.on('load', () => {
       map.addSource("momentsSource", {
         "type": "geojson",
         "data": {
           "type": "FeatureCollection",
-          "features": this.state.momentGeojsonFeatures
+          "features": this.momentGeojsonFeatures
         }
       });
 
-      map.addLayer({
-        "id": "moments",
-        "type": "symbol",
-        "source": "momentsSource",
-        "layout": {
-          "icon-image": "heliport-15",
-          "icon-allow-overlap": true,
-          "icon-size": 3,
-        }
+      map.addImage('citizenMarkerIcon', citizenLogoImgTag);
+      map.addImage('twitterMarkerIcon', twitterLogoImgTag);
+
+      ["citizen", "twitter"].forEach(contentProviderCode => {
+        const layerId = `poi-${contentProviderCode}`;
+
+        map.addLayer({
+          "id": layerId,
+          "type": "symbol",
+          "source": "momentsSource",
+          "layout": {
+            "icon-image": `${contentProviderCode}MarkerIcon`,
+            "icon-allow-overlap": true,
+            "icon-size": 1,
+          },
+          "filter": ["==", "content_provider_code", contentProviderCode]
+        });
+
+        map.on('click', layerId, this.handleMomentClick);
+        map.on('mouseenter', layerId, () => { map.getCanvas().style.cursor = 'pointer' });
+        map.on('mouseleave', layerId, () => { map.getCanvas().style.cursor = '' });
       });
     });
-
-    map.addControl(drawControl)
-    map.on('draw.create', this.createEvent);
-    map.on('draw.update', this.createEvent);
-    map.on('click', 'moments', this.handleMomentClick);
-    map.on('mouseenter', 'moments', () => { map.getCanvas().style.cursor = 'pointer' });
-    map.on('mouseleave', 'moments', () => { map.getCanvas().style.cursor = '' });
   }
 
   handleMomentClick(e) {
-    const map = this.state.map;
     const feature = e.features[0]
     const coordinates = feature.geometry.coordinates.slice();
 
@@ -103,11 +118,12 @@ class MapUserPage extends React.Component {
       new mapboxgl.Popup({ anchor: 'center' })
         .setLngLat(coordinates)
         .setHTML(popupHtml)
-        .addTo(map);
-    })
+        .addTo(this.map);
+    });
   }
 
   createEvent(e) {
+    let eventId
     this.setState({ errorMessage: "" })
 
     const eventAttrs = {
@@ -116,35 +132,29 @@ class MapUserPage extends React.Component {
       start_time: Math.floor(Date.now() / 1000) - (60 * 60 * 2), // 2 hours
     }
 
-    let eventId
-
-    EventsApi.create(eventAttrs).then((r) => {
-      eventId = r.data.id;
-      return EventsApi.fetchContent(r.data.id)
-    }).then((_) => (
+    EventsApi.create(eventAttrs).then((r) => (
+      eventId = r.data.id
+    )).then((_) => (
+      EventsApi.fetchContent(eventId)
+    )).then((_) => (
       EventsApi.get(eventId)
     )).then((r) => {
       const momentFeatures = r.data.moments.map(m => m.geojson_feature)
-      const momentGeojsonFeatures = this.state.momentGeojsonFeatures.concat(momentFeatures)
-      this.setState({ momentGeojsonFeatures }, this.setMomentsSourceData)
+      this.momentGeojsonFeatures = this.momentGeojsonFeatures.concat(momentFeatures)
+
+      this.map.getSource('momentsSource').setData({
+        "type": "FeatureCollection",
+        "features": this.momentGeojsonFeatures
+      })
     }).catch((error) => {
       this.setState({ errorMessage: error.response.data.message})
     })
   }
 
-  setMomentsSourceData() {
-    const sourceData = {
-      "type": "FeatureCollection",
-      "features": this.state.momentGeojsonFeatures
-    }
-
-    this.state.map.getSource('momentsSource').setData(sourceData)
-  }
-
   render() {
     return (
       <div>
-        <div id="map" className={styles.map}></div>
+        <div id="map" className={styles.map} ref={el => this.mapContainer = el}></div>
         <p>{this.state.errorMessage}</p>
       </div>
     );

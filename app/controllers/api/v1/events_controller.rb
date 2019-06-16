@@ -5,7 +5,6 @@ class Api::V1::EventsController < ApiBaseController
   end
 
   def show
-    # TODO: serialize down meta data, total num moments ect..
     event = Event.find(params[:id])
     json_response(event)
   end
