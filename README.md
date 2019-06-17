@@ -12,7 +12,9 @@ Geofeed is a web app to display "moments" boxed by location & time
 
 "events" are collections of location & time boxed "moments"
 
-TODO: .gif here
+TL;DR
+
+![](readme-tldr.gif)
 
 ## About
 
@@ -48,4 +50,4 @@ concepts:
 
 This repo started as my progress through rails 5 api tutorial; thanks [scotch.io](https://scotch.io/tutorials/build-a-restful-json-api-with-rails-5-part-one)! & [andela](https://github.com/andela)!
 
-It's now boilerplate pre-packed with application logic serving as reference code. I'll eventually rip out pure boiler plate into another repo and this will become a fun side project.
+I'd like eventually rip out pure boiler plate into another repo and keep this will become a fun side project.
