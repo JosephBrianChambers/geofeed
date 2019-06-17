@@ -5,3 +5,7 @@ instagram:
 twitter:
   name: "Twitter"
   code: "twitter"
+
+citizen:
+  name: "Citizen"
+  code: "citizen"

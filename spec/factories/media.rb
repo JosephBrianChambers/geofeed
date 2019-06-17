@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :medium, class: 'Media' do
+  factory :media, class: 'Media' do
     url "MyString"
   end
 end

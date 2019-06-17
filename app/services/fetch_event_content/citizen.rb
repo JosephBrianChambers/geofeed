@@ -1,5 +1,5 @@
 module FetchEventContent
-  class Twitter
+  class Citizen
     attr_reader :event
 
     def self.call(event)
@@ -11,8 +11,8 @@ module FetchEventContent
     end
 
     def call
-      twitter_client.geo_fence_tweets(event.geojson, start_time: 2.hours.ago, end_time: Time.now) do |raw_tweet|
-        parser_adapter = MomentParserAdapter::Tweet.new(raw_tweet)
+      citizen_client.geo_fence_alerts(event, start_time: 2.hours.ago, end_time: Time.now) do |raw_alert|
+        parser_adapter = MomentParserAdapter::CitizenAlert.new(raw_alert)
 
         next unless (lng_lat = parser_adapter.moment_attributes[:lng_lat]).present?
         next unless event.includes_lng_lat?(lng_lat)
@@ -23,8 +23,8 @@ module FetchEventContent
 
     private
 
-    def twitter_client
-      ::Twitter::Client.new
+    def citizen_client
+      ::Citizen::Client.new
     end
   end
 end

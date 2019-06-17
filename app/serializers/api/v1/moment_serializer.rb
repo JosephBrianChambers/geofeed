@@ -1,5 +1,8 @@
 class Api::V1::MomentSerializer < ActiveModel::Serializer
-  attributes :id, :geojson_point
+  attributes :id, :caption, :geojson_point, :title, :provider_id
+
+  belongs_to :author
+  has_many :medias
 
   def geojson_point
     object.geojson

@@ -5,7 +5,6 @@ class Api::V1::EventsController < ApiBaseController
   end
 
   def show
-    # TODO: serialize down meta data, total num moments ect..
     event = Event.find(params[:id])
     json_response(event)
   end
@@ -15,7 +14,8 @@ class Api::V1::EventsController < ApiBaseController
     # TODO: background job
     # FetchEventContent::Instagram.call(event)
     FetchEventContent::Twitter.call(event)
-    head :ok
+    FetchEventContent::Citizen.call(event)
+    json_response({})
   end
 
   private

@@ -1,0 +1,59 @@
+{
+  "address": "2505 Olympic Blvd, Walnut Creek, CA 94595, USA",
+  "cityCode": "sv",
+  "cs": 1535913953506,
+  "key": "-LLQakYx64DKb2UR6jeK",
+  "level": 1,
+  "ll": [
+    37.78,
+    -122.42
+  ],
+  "location": "2505 Olympic Blvd",
+  "neighborhood": "Saranap, CA",
+  "raw": "Cat Stuck on Utility Pole at 2505 Olympic Blvd, Walnut Creek, CA 94595, USA",
+  "rawLocation": "2505 Olympic Blvd, Walnut Creek, CA 94595, USA",
+  "shareMap": "https://d2ohigj5624u4a.cloudfront.net/incidents/-KnjDxI3IRfwU1D8qNKi/-KnjDxI3IRfwU1D8qNKi_v1499460311015.jpg",
+  "title": "Cat Stuck on Utility Pole",
+  "transcriber": "301afa5aa495cdf0245a",
+  "ts": 1535914963295,
+  "updates": {
+    "-LLQakbL9YQ5lN4jUIb9": {
+      "text": "Incident reported at 2505 Olympic Blvd.",
+      "ts": 1535913953724
+    },
+    "-LLQaqPHghLLijD5F_4D": {
+      "dispatcher": {
+        "id": "301afa5aa495cdf0245a",
+        "name": "Meggy Hai Trang"
+      },
+      "text": "Firefighters at the scene report that a cat is stuck on a utility pole in a back yard.",
+      "ts": 1535913977402
+    },
+    "-LLQarVff-S5GpduqefS": {
+      "dispatcher": {
+        "id": "301afa5aa495cdf0245a",
+        "name": "Meggy Hai Trang"
+      },
+      "text": "PG&E has been notified.",
+      "ts": 1535913981921
+    },
+    "-LLQeYBOJSUXGxkvtr_2": {
+      "dispatcher": {
+        "id": "301afa5aa495cdf0245a",
+        "name": "Meggy Hai Trang"
+      },
+      "text": "San Mateo Animal Control is on the way.",
+      "ts": 1535914947224
+    },
+    "-LLQeb6CXhuYnCm20HK8": {
+      "dispatcher": {
+        "id": "301afa5aa495cdf0245a",
+        "name": "Meggy Hai Trang"
+      },
+      "text": "Firefighters have been unable to locate an owner, and the cat has no tags.",
+      "ts": 1535914963295
+    }
+  },
+  "id": "-LLQakYx64DKb2UR6jeK",
+  "_id": "-LLQakYx64DKb2UR6jeK"
+}

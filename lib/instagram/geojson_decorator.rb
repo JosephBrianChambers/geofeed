@@ -15,7 +15,7 @@ module Instagram
     def radius
       factory = RGeo::Geographic.spherical_factory
       centroid = factory.point(centroid_lng, centroid_lat)
-      geometry = RGeo::GeoJSON.decode(object, json_parser: :json, geo_factory: factory).geometry
+      geometry = RGeo::GeoJSON.decode(object, json_parser: :json, geo_factory: factory)
       geometry.exterior_ring.points.map { |p| centroid.distance(p) }.max # meters
     end
 
@@ -23,7 +23,7 @@ module Instagram
 
     def mercator_geometry
       factory = RGeo::Geographic.simple_mercator_factory
-      @geometry ||= RGeo::GeoJSON.decode(object, json_parser: :json, geo_factory: factory).geometry
+      @geometry ||= RGeo::GeoJSON.decode(object, json_parser: :json, geo_factory: factory)
     end
 
     def object

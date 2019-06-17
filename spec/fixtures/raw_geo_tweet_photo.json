@@ -1,0 +1,213 @@
+{
+  "created_at": "Thu Jul 19 00:46:47 +0000 2018",
+  "id": 1019745331855020033,
+  "id_str": "1019745331855020033",
+  "text": "temperature down 80°F -&gt; 77°F\nhumidity up 56% -&gt; 68%\nwind 18mph -&gt; 22mph",
+  "truncated": false,
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "user_mentions": [],
+    "urls": [],
+    "media": [
+      {
+        "id": 1024328368135655425,
+        "id_str": "1024328368135655425",
+        "indices": [
+          21,
+          44
+        ],
+        "media_url": "http://pbs.twimg.com/media/DjclOUQU0AEKb6k.jpg",
+        "media_url_https": "https://pbs.twimg.com/media/DjclOUQU0AEKb6k.jpg",
+        "url": "https://t.co/tSXXr9pcAS",
+        "display_url": "pic.twitter.com/tSXXr9pcAS",
+        "expanded_url": "https://twitter.com/aaronamaya/status/1024328374280499200/photo/1",
+        "type": "photo",
+        "sizes": {
+          "thumb": {
+            "w": 150,
+            "h": 150,
+            "resize": "crop"
+          },
+          "small": {
+            "w": 680,
+            "h": 680,
+            "resize": "fit"
+          },
+          "medium": {
+            "w": 1200,
+            "h": 1200,
+            "resize": "fit"
+          },
+          "large": {
+            "w": 2048,
+            "h": 2048,
+            "resize": "fit"
+          }
+        }
+      }
+    ]
+  },
+  "extended_entities": {
+    "media": [
+      {
+        "id": 1024328368135655425,
+        "id_str": "1024328368135655425",
+        "indices": [
+          21,
+          44
+        ],
+        "media_url": "http://pbs.twimg.com/media/DjclOUQU0AEKb6k.jpg",
+        "media_url_https": "https://pbs.twimg.com/media/DjclOUQU0AEKb6k.jpg",
+        "url": "https://t.co/tSXXr9pcAS",
+        "display_url": "pic.twitter.com/tSXXr9pcAS",
+        "expanded_url": "https://twitter.com/aaronamaya/status/1024328374280499200/photo/1",
+        "type": "photo",
+        "sizes": {
+          "thumb": {
+            "w": 150,
+            "h": 150,
+            "resize": "crop"
+          },
+          "small": {
+            "w": 680,
+            "h": 680,
+            "resize": "fit"
+          },
+          "medium": {
+            "w": 1200,
+            "h": 1200,
+            "resize": "fit"
+          },
+          "large": {
+            "w": 2048,
+            "h": 2048,
+            "resize": "fit"
+          }
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "iso_language_code": "en",
+    "result_type": "recent"
+  },
+  "source": "<a href=\"http://twitter.com/SanFrancisco\" rel=\"nofollow\">San Francisco Warnings</a>",
+  "in_reply_to_status_id": null,
+  "in_reply_to_status_id_str": null,
+  "in_reply_to_user_id": null,
+  "in_reply_to_user_id_str": null,
+  "in_reply_to_screen_name": null,
+  "user": {
+    "id": 585167005,
+    "id_str": "585167005",
+    "name": "SF Weather, Warnings",
+    "screen_name": "SanFrancisco",
+    "location": "San Francisco, CA",
+    "description": "Weather updates, forecast, warnings and information for San Francisco, CA. Sources: https://t.co/AksTo0jtnS, NOAA, USGS.",
+    "url": null,
+    "entities": {
+      "description": {
+        "urls": [
+          {
+            "url": "https://t.co/AksTo0jtnS",
+            "expanded_url": "http://OpenWeatherMap.org",
+            "display_url": "OpenWeatherMap.org",
+            "indices": [
+              84,
+              107
+            ]
+          }
+        ]
+      }
+    },
+    "protected": false,
+    "followers_count": 9419,
+    "friends_count": 4,
+    "listed_count": 168,
+    "created_at": "Sat May 19 23:01:06 +0000 2012",
+    "favourites_count": 4,
+    "utc_offset": null,
+    "time_zone": null,
+    "geo_enabled": true,
+    "verified": false,
+    "statuses_count": 21475,
+    "lang": "en",
+    "contributors_enabled": false,
+    "is_translator": false,
+    "is_translation_enabled": false,
+    "profile_background_color": "C0DEED",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile": false,
+    "profile_image_url": "http://pbs.twimg.com/profile_images/1019745299747635204/mARK68aZ_normal.jpg",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/1019745299747635204/mARK68aZ_normal.jpg",
+    "profile_link_color": "1DA1F2",
+    "profile_sidebar_border_color": "C0DEED",
+    "profile_sidebar_fill_color": "DDEEF6",
+    "profile_text_color": "333333",
+    "profile_use_background_image": true,
+    "has_extended_profile": false,
+    "default_profile": true,
+    "default_profile_image": false,
+    "following": null,
+    "follow_request_sent": null,
+    "notifications": null,
+    "translator_type": "none"
+  },
+  "geo": {
+    "type": "Point",
+    "coordinates": [
+      37.78,
+      -122.42
+    ]
+  },
+  "coordinates": {
+    "type": "Point",
+    "coordinates": [
+      -122.42,
+      37.78
+    ]
+  },
+  "place": {
+    "id": "5a110d312052166f",
+    "url": "https://api.twitter.com/1.1/geo/id/5a110d312052166f.json",
+    "place_type": "city",
+    "name": "San Francisco",
+    "full_name": "San Francisco, CA",
+    "country_code": "US",
+    "country": "United States",
+    "contained_within": [],
+    "bounding_box": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            -122.514926,
+            37.708075
+          ],
+          [
+            -122.357031,
+            37.708075
+          ],
+          [
+            -122.357031,
+            37.833238
+          ],
+          [
+            -122.514926,
+            37.833238
+          ]
+        ]
+      ]
+    },
+    "attributes": {}
+  },
+  "contributors": null,
+  "is_quote_status": false,
+  "retweet_count": 0,
+  "favorite_count": 0,
+  "favorited": false,
+  "retweeted": false,
+  "lang": "en"
+}

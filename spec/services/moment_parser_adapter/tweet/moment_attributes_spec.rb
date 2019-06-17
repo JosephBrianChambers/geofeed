@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe MomentAdapter::Twitter do
+RSpec.describe MomentParserAdapter::Tweet::MomentAttributes do
   fixtures :content_providers
 
-  subject { MomentAdapter::Twitter.new(raw_tweet) }
+  subject { MomentParserAdapter::Tweet::MomentAttributes.new(raw_tweet) }
 
   describe "#lng_lat" do
     describe "when geo tweet" do
@@ -41,40 +41,14 @@ RSpec.describe MomentAdapter::Twitter do
     end
   end
 
-  describe "#author" do
-    let(:raw_tweet) do
-      path = Rails.root.join("spec", "fixtures", "raw_geo_tweet.json")
-      JSON.parse(File.read(path))
-    end
-
-    it "returns author" do
-      expect(subject.author.name).to eq("SF Weather, Warnings")
-    end
-  end
-
-  describe "#media" do
-    describe "when geo tweet" do
-      describe "when tweet has no media" do
-        let(:raw_tweet) do
-          path = Rails.root.join("spec", "fixtures", "raw_geo_tweet.json")
-          JSON.parse(File.read(path))
-        end
-
-        it "returns nil" do
-          expect(subject.media).to eq(nil)
-        end
-      end
-    end
-  end
-
-  describe "#content_provider" do
+  describe "#content_provider_id" do
     let(:raw_tweet) do
       path = Rails.root.join("spec", "fixtures", "raw_geo_tweet.json")
       JSON.parse(File.read(path))
     end
 
     it "returns content_provider" do
-      expect(subject.content_provider.name).to eq("Twitter")
+      expect(ContentProvider.find(subject.content_provider_id).name).to eq("Twitter")
     end
   end
 
@@ -89,15 +63,22 @@ RSpec.describe MomentAdapter::Twitter do
     end
   end
 
-  describe "#moment" do
+  describe "#moment_attributes" do
     describe "when geo tweet" do
       let(:raw_tweet) do
         path = Rails.root.join("spec", "fixtures", "raw_geo_tweet.json")
         JSON.parse(File.read(path))
       end
 
-      it "returns valid moment" do
-        expect(subject.moment.valid?).to be(true)
+      it "returns moment attributes" do
+        expected_result = {
+          :content_provider_id => 376077238,
+          :lng_lat => [-122.42, 37.78],
+          :caption => "temperature down 80°F -&gt; 77°F\nhumidity up 56% -&gt; 68%\nwind 18mph -&gt; 22mph",
+          :provider_id => "1019745331855020033"
+        }
+
+        expect(subject.moment_attributes).to eq(expected_result)
       end
     end
   end

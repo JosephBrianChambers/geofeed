@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe AuthorAdapter::Twitter do
+RSpec.describe MomentParserAdapter::Tweet::AuthorAttributes do
   fixtures :content_providers
 
-  subject { AuthorAdapter::Twitter.new(raw_tweet) }
+  subject { MomentParserAdapter::Tweet::AuthorAttributes.new(raw_tweet) }
 
   describe "#name" do
     let(:raw_tweet) do
@@ -51,14 +51,14 @@ RSpec.describe AuthorAdapter::Twitter do
     end
   end
 
-  describe "#author" do
+  describe "#author_attributes" do
     let(:raw_tweet) do
       path = Rails.root.join("spec", "fixtures", "raw_geo_tweet.json")
       JSON.parse(File.read(path))
     end
 
-    it "returns valid author" do
-      expect(subject.author.valid?).to eq(true)
+    it "returns valid author attributes" do
+      expect(Author.new(subject.author_attributes).valid?).to eq(true)
     end
   end
 end

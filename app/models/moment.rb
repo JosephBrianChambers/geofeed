@@ -11,6 +11,7 @@ class Moment < ApplicationRecord
 
   has_many :event_moments
   has_many :events, through: :event_moments
+  has_many :medias
   belongs_to :content_provider
   belongs_to :author, primary_key: :provider_id, foreign_key: :provider_author_id
 
@@ -43,4 +44,8 @@ class Moment < ApplicationRecord
   def geojson
     RGeo::GeoJSON.encode(loc_geo)
   end
+
+  # def lng_lat
+  #   [loc_geo.lon, loc_geo.lat]
+  # end
 end

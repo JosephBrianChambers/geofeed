@@ -21,6 +21,11 @@ class Event < ApplicationRecord
     RGeo::GeoJSON.encode(loc_fence_geo)
   end
 
+  def includes_lng_lat?(lng_lat)
+    cartesian_point = FACTORY.point(*lng_lat).projection
+    loc_fence.contains?(cartesian_point)
+  end
+
   private
 
   def validate_geo_location
